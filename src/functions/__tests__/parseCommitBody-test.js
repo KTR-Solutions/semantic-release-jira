@@ -10,8 +10,8 @@ describe("parseCommitBody", () => {
       expect(parseCommitBody("foobar")).toEqual([]);
     });
 
-    it("returns empty array for unknown keyword", () => {
-      expect(parseCommitBody("foobar ISSUE-12345")).toEqual([]);
+    it("returns empty array for miss-formatted issue", () => {
+      expect(parseCommitBody("foobar ISSUE12345")).toEqual([]);
     });
   });
 
@@ -37,6 +37,10 @@ describe("parseCommitBody", () => {
 
     it("returns correct match for single issue (resolve)", () => {
       expect(parseCommitBody("resolves ISSUE-12345")).toEqual(["ISSUE-12345"]);
+    });
+
+    it("returns correct match for single issue (fix)", () => {
+      expect(parseCommitBody("fix: ISSUE-12345 - wow this worked")).toEqual(["ISSUE-12345"]);
     });
 
     it("returns correct match for single issue with body (close)", () => {
@@ -86,12 +90,12 @@ describe("parseCommitBody", () => {
   });
 
   describe("special cases", () => {
-    it("only returns correct match for invalid issue references", () => {
+    it("can handle issue references at any place in string issue references", () => {
       expect(
         parseCommitBody(
           "lorem ipsum closes the door\nlorem\n\ncloses ISSUE-12345, ISSUE-23456"
         )
-      ).toEqual(["ISSUE-12345"]);
+      ).toEqual(["ISSUE-12345", "ISSUE-23456"]);
     });
 
     it("can handle (multiple) empty lines in message", () => {

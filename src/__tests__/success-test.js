@@ -34,7 +34,7 @@ const validConfig = {
     },
     {
       method: "POST",
-      url: "https://jira.d2iq.com/rest/api/2/issue/${issueKey}/transitions",
+      url: "https://jira.example.com/rest/api/2/issue/${issueKey}/transitions",
       body: '{"transition":{"id":151}}',
     },
   ],
@@ -44,6 +44,8 @@ const validContext = {
   commits: [
     { body: `lorem\ncloses issue-123`, commit: { short: "aaa" } },
     { body: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
+    { body: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
+    { body: `lorem\nfix: MVP-999 - add second necessary fix`, commit: { short: "ddd" } },
   ],
   logger: {
     success: console.log,
@@ -72,6 +74,6 @@ describe("success", () => {
         },
       }
     );
-    expect(await r).toEqual([{ json: true }, { json: true }]);
+    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }]);
   });
 });

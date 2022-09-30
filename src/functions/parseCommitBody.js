@@ -9,7 +9,8 @@ const parseCommitBody = function (body) {
     return [];
   }
 
-  const regEx = /((updates?|resolves?|closes?):? \"?([A-Z][A-Z0-9_]+\-[0-9]+)\"?)/gi;
+  // const regEx = /((updates?|resolves?|closes?):? \"?([A-Z][A-Z0-9_]+\-[0-9]+)\"?)/gi;
+  const regEx = /([A-Z][A-Z0-9_]+\-[0-9]+)/gi;
   const bodyLines = body.trim().split("\n");
   const lastEmptyLine = bodyLines.lastIndexOf("");
 
