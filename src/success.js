@@ -20,6 +20,7 @@ async function success(pluginConfig, context) {
 
   const authHeader = getAuthHeader({ auth, env, logger });
   if (!authHeader) {
+    logger.debug("Jira Auth Header not set");
     return;
   }
 
@@ -29,11 +30,12 @@ async function success(pluginConfig, context) {
   }
 
   const issueKeys = commits.reduce((issueKeys, commit) => {
-    const { body } = commit;
-    return issueKeys.concat(parseCommitBody(body));
+    const { message } = commit;
+    return issueKeys.concat(parseCommitBody(message));
   }, []);
+  logger.debug("Jira Issue keys " + issueKeys);
 
-  const results = issueKeys.map((issueKey) =>
+  const results = await Promise.all(issueKeys.map((issueKey) =>
     actions.reduce(
       (p, action) =>
         p.then(() =>
@@ -47,8 +49,8 @@ async function success(pluginConfig, context) {
         ),
       Promise.resolve()
     )
-  );
-  return Promise.all(results);
+  ));
+  return results;
 }
 
 module.exports = success;

@@ -12,7 +12,11 @@ async function verifyConditions(pluginConfig, context) {
   const { env, logger } = context;
   const { auth } = pluginConfig;
 
-  return await !!getAuthHeader({ auth, env, logger });
+  logger.debug("Verifying Jira Auth");
+
+  const authHeader = await !!getAuthHeader({ auth, env, logger });
+  logger.debug("Verifying Jira Auth [result=" + authHeader + "]");
+  return authHeader;
 }
 
 module.exports = verifyConditions;

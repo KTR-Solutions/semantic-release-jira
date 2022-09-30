@@ -42,10 +42,10 @@ const validConfig = {
 const validContext = {
   nextRelease: { version: testVersion },
   commits: [
-    { body: `lorem\ncloses issue-123`, commit: { short: "aaa" } },
-    { body: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
-    { body: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
-    { body: `lorem\nfix: MVP-999 - add second necessary fix`, commit: { short: "ddd" } },
+    { message: `lorem\ncloses issue-123`, commit: { short: "aaa" } },
+    { message: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
+    { message: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
+    { message: `lorem\nfix: MVP-999 - add second necessary fix`, commit: { short: "ddd" } },
   ],
   logger: {
     success: console.log,
