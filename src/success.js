@@ -1,3 +1,5 @@
+const { uniq } = require("lodash");
+
 const parseCommitBody = require("./functions/parseCommitBody.js");
 const getAuthHeader = require("./functions/getAuthHeader.js");
 const jiraApiCall = require("./functions/jiraApiCall.js");
@@ -35,7 +37,7 @@ async function success(pluginConfig, context) {
   }, []);
   logger.debug("Jira Issue keys " + issueKeys);
 
-  const results = await Promise.all(issueKeys.map((issueKey) =>
+  const results = await Promise.all(uniq(issueKeys).map((issueKey) =>
     actions.reduce(
       (p, action) =>
         p.then(() =>
