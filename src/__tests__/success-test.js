@@ -42,10 +42,20 @@ const validConfig = {
 const validContext = {
   nextRelease: { version: testVersion },
   commits: [
-    { message: `lorem\ncloses issue-123`, commit: { short: "aaa" } },
-    { message: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
+    { body: `lorem\ncloses issue-123`, commit: { short: "aaa" } },
+    { body: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
     { message: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
+    { message: `fix: [MVP-789] - add necessary fix`, commit: { short: "ccc" } },
+    { message: `feat: MVP-572 Upload all mastered files of an album (#327)`, body: `
+    * Upload all mastered files of an album - Frontend
+    
+    * fix: error message
+    
+    * fix: uploading files
+    
+    * fix: error message`, commit: { short: "ccc" } },
     { message: `lorem\nfix: MVP-999 - add second necessary fix`, commit: { short: "ddd" } },
+    { message: `nothing in here`, commit: { short: "ddd22" } },
   ],
   logger: {
     success: console.log,
@@ -74,6 +84,6 @@ describe("success", () => {
         },
       }
     );
-    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }]);
+    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }, { json: true }]);
   });
 });

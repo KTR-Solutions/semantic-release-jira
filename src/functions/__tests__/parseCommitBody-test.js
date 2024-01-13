@@ -43,11 +43,24 @@ describe("parseCommitBody", () => {
       expect(parseCommitBody("fix: ISSUE-12345 - wow this worked")).toEqual(["ISSUE-12345"]);
     });
 
+    it("returns correct match for single issue (fix) with brackets ", () => {
+      expect(parseCommitBody("fix: [MVP-505] change csv separator to semicolon (#316)")).toEqual(["MVP-505"]);
+    });
+
+    it("returns correct match for single issue (fix) with brackets ", () => {
+      expect(parseCommitBody("feat: MVP-572 Upload all mastered files of an album (#327)")).toEqual(["MVP-572"]);
+    });
+
+    it("returns correct match for single issue (fix) with brackets ", () => {
+      expect(parseCommitBody("fix: MVP-506 Cadenzabox export track description with tags (#320)")).toEqual(["MVP-506"]);
+    });
+
     it("returns correct match for single issue with body (close)", () => {
       expect(
         parseCommitBody("lorem ipsum\nlorem\n\nclose ISSUE-12345")
       ).toEqual(["ISSUE-12345"]);
     });
+
     it("returns correct match for single issue with body (Closes)", () => {
       expect(
         parseCommitBody("lorem ipsum\nlorem\n\nCloses ISSUE-12345")
