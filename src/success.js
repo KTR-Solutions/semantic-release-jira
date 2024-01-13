@@ -34,9 +34,13 @@ async function success(pluginConfig, context) {
   const issueKeys = commits.reduce((issueKeys, commit) => {
     const { message, body } = commit;
     const commitIssueKeysMessage = parseCommitBody(message);
-    logger.debug("Jira Issue keys message: " + commitIssueKeysMessage);
+    if (commitIssueKeysMessage.length > 0) {
+      logger.debug("Jira Issue keys message: " + commitIssueKeysMessage);
+    }
     const commitIssueKeysBody = parseCommitBody(body);
-    logger.debug("Jira Issue keys body: " + commitIssueKeysBody);
+    if (commitIssueKeysBody.length > 0) {
+      logger.debug("Jira Issue keys body: " + commitIssueKeysBody);
+    }
     return issueKeys.concat(commitIssueKeysMessage).concat(commitIssueKeysBody);
   }, []);
   logger.debug("Jira Issue keys all" + issueKeys);
