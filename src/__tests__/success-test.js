@@ -46,6 +46,8 @@ const validContext = {
     { body: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
     { message: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
     { message: `fix: [MVP-789] - add necessary fix`, commit: { short: "ccc" } },
+    { message: `feat: MVP-687 Show submit button for label members as well (#368)
+    feat: Show submit button for label members & owners - Frontend`, commit: { short: "ccc" } },
     { message: `feat: MVP-572 Upload all mastered files of an album (#327)`, body: `
     * Upload all mastered files of an album - Frontend
     
@@ -84,6 +86,6 @@ describe("success", () => {
         },
       }
     );
-    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }, { json: true }]);
+    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }, { json: true }, {json: true}]);
   });
 });
