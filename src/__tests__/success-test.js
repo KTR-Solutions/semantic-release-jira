@@ -46,16 +46,60 @@ const validContext = {
     { body: `lorem\nresolves issue-456`, commit: { short: "bbb" } },
     { message: `fix: MVP-789 - add necessary fix`, commit: { short: "ccc" } },
     { message: `fix: [MVP-789] - add necessary fix`, commit: { short: "ccc" } },
+    { message: `feat: MVP-403 File AI tagging integration (#185)
+    * feat: MVP-403 Added AI tag mapping and event listener for new files
+    * fix: MVP-403 Updated AI Client Tags, application properties and functional tests for sign up and login
+    * fix: MVP-403 Updated ConditionalOnProperty prefixes in AI service classes
+    ---------
+    Co-authored-by: Colin Kater <Colin.Kater@ktr-solutions.com>`, commit: { short: "ccc" } },
     { message: `feat: MVP-687 Show submit button for label members as well (#368)
     feat: Show submit button for label members & owners - Frontend`, commit: { short: "ccc" } },
-    { message: `feat: MVP-572 Upload all mastered files of an album (#327)`, body: `
-    * Upload all mastered files of an album - Frontend
-    
-    * fix: error message
-    
-    * fix: uploading files
-    
-    * fix: error message`, commit: { short: "ccc" } },
+    { message: `feat: MVP-687 Show submit button for label members as well (#368)
+    feat: Show submit button for label members & owners - Frontend`, commit: { short: "ccc" } },
+    { message: `feat: MVP-618 label and artist dashboards (#370)
+
+* feat: MVP-618 added new label dashboard
+
+* feat: MVP-618 Added landingImageFileId property and updated dashboard components, introduced ProjectCard component
+
+* ci: MVP-618 Added SOLUTION env variable and updated URLs in GitHub workflow
+
+* fix: MVP-618 Moved ktr.png and ktr.svg to assets folder and deleted logo192.png and logo512.png
+
+* refactor: MVP-618 Refactor various imports in different files to use new config directory
+
+* fix: MVP-618 Refactor ActivitySection Component and update event visuals
+
+* fix: MVP-618 Updated formatting & added null check in Stat.tsx
+
+* fix: MVP-618 Replaced npm install and build with bun and checked user object availability
+
+* fix: MVP-618 Add condition to handle missing targetUser in ActivitySection
+
+---------
+
+Co-authored-by: Colin Kater <katercolin@gmail.com>`, body: `
+    * feat: MVP-618 added new label dashboard
+
+* feat: MVP-618 Added landingImageFileId property and updated dashboard components, introduced ProjectCard component
+
+* ci: MVP-618 Added SOLUTION env variable and updated URLs in GitHub workflow
+
+* fix: MVP-618 Moved ktr.png and ktr.svg to assets folder and deleted logo192.png and logo512.png
+
+* refactor: MVP-618 Refactor various imports in different files to use new config directory
+
+* fix: MVP-618 Refactor ActivitySection Component and update event visuals
+
+* fix: MVP-618 Updated formatting & added null check in Stat.tsx
+
+* fix: MVP-618 Replaced npm install and build with bun and checked user object availability
+
+* fix: MVP-618 Add condition to handle missing targetUser in ActivitySection
+
+---------
+
+Co-authored-by: Colin Kater <katercolin@gmail.com>`, commit: { short: "ccc" } },
     { message: `lorem\nfix: MVP-999 - add second necessary fix`, commit: { short: "ddd" } },
     { message: `nothing in here`, commit: { short: "ddd22" } },
   ],
@@ -86,6 +130,6 @@ describe("success", () => {
         },
       }
     );
-    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }, { json: true }, {json: true}]);
+    expect(await r).toEqual([{ json: true }, { json: true }, { json: true }, { json: true }, { json: true }, {json: true}, {json: true}]);
   });
 });
